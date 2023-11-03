@@ -3,7 +3,8 @@ const express = require('express');
 const cookieParser =require('cookie-parser');
 const cors = require('cors');
 const connectDB =require('./db/config');
-const authRoute = require('./Routes/auth.js');
+const authRoute = require('./Routes/auth');
+const userRoute = require('./Routes/user');
 const app = express();
 
 const corsOptions = {
@@ -15,6 +16,7 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 
 app.use('/api/v1/auth',authRoute);
+app.use('/api/v1/user',userRoute);
 
 const PORT = process.env.PORT || 3245;
 
