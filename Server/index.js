@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser =require('cookie-parser');
 const cors = require('cors');
 const connectDB =require('./db/config');
+const authRoute = require('./Routes/auth.js');
 const app = express();
 
 const corsOptions = {
@@ -13,9 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 
-app.get('/',(req,res)=>{
-    res.send('Medicare project starting');
-})
+app.use('/api/v1/auth',authRoute);
 
 const PORT = process.env.PORT || 3245;
 
