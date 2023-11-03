@@ -50,6 +50,46 @@ const register = async(req,res)=>{
     }
 }
 
+const login = async(req,res)=>{
+
+    const {email,password} = req.body;
+
+    try {
+        let user = null;
+
+        const patient = await User.findOne({email});
+        const doctor = await Doctor.findOne({email});
+
+        if(patient){
+            user = patient;
+        }
+        if(doctor){
+            user = doctor;
+        }
+
+        if(!user){
+            return res.status(404).json({status:false,message: "Invalid Credentials"});
+        }
+
+        const isPasswordMatch = await bcrypt.compare(password,user.password);
+
+        if(!isPasswordMatch){
+            return res.status(404).json({status:false,message: "Invalid Credentials"});
+        }
+
+        const token = jwt.sign({id:user._id,role:user.role},process.env.JWT_SEC,{expiresIn: '1d'});
+
+        //const {password, role, appointments,...rest} = user._doc;
+
+        //res.status(200).json({success: true, message: "Successfully Login",token,data:{...rest},role});
+
+        res.status(200).json({success: true, message: "Successfully Login",token});
+    } catch (error) {
+        res.status(500).json({success: false, message: "Failed to login"});
+    }
+}
+
 module.exports = {
-    register
+    register,
+    login
 }
