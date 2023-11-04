@@ -4,6 +4,10 @@ const {authenticate,restrict} = require('../utils/auth/verifyToken');
 
 const {getSingleDoctor,updateDoctor,getAllDoctor,deleteDoctor} = require('../Controllers/doctorController');
 
+const reviewRouter = require('./review');
+
+router.use('/:doctorId/review',reviewRouter);
+
 router.route('/:id')
     .get(getSingleDoctor)
     .put(authenticate,restrict(['doctor']),updateDoctor)

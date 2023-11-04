@@ -29,7 +29,7 @@ const DoctorSchema = new mongoose.Schema({
     },
     role:{
         type: String,
-        enum: ["patient","admin"],
+        enum: ["patient","doctor"],
         default: "patient"
     },
     specialization:{

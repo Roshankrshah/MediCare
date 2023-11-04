@@ -29,9 +29,9 @@ const register = async(req,res)=>{
                 photo,
                 gender,
                 role
-            })
+            });
         }
-        if(role === 'admin'){
+        if(role === 'doctor'){
             user = new Doctor({
                 name,
                 email,
@@ -39,7 +39,7 @@ const register = async(req,res)=>{
                 photo,
                 gender,
                 role
-            })
+            });
         }
 
         await user.save();
