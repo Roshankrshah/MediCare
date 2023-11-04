@@ -51,7 +51,10 @@ const DoctorSchema = new mongoose.Schema({
     timeSlots:{
         type: Array
     },
-    //reviews:[]
+    reviews:[{
+        type: mongoose.Types.ObjectId,
+        ref: 'Review'
+    }],
     averageRating: {
         type: Number,
         default: 0,
