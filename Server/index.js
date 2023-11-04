@@ -5,6 +5,7 @@ const cors = require('cors');
 const connectDB =require('./db/config');
 const authRoute = require('./Routes/auth');
 const userRoute = require('./Routes/user');
+const doctorRoute = require('./Routes/doctor');
 const app = express();
 
 const corsOptions = {
@@ -17,6 +18,7 @@ app.use(cors(corsOptions));
 
 app.use('/api/v1/auth',authRoute);
 app.use('/api/v1/user',userRoute);
+app.use('api/v1/doctor',doctorRoute);
 
 const PORT = process.env.PORT || 3245;
 
