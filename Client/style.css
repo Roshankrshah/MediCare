@@ -1,0 +1,33 @@
+.navbar{
+  background-image: url('images/header-bg.png');
+
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar-nav{
+  margin-left: 100px;
+  gap: 20px
+}
+
+.navbar-nav .nav-link.active{
+  color: blue;
+}
+
+.login-btn{
+  border-radius: 25px;
+  background-color: blue;
+  padding: auto 20px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover{
+  background-color: rgb(93, 93, 234);
+}
+
+.container-fluid{
+  margin: auto 200px;
+}
