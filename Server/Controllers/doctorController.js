@@ -30,7 +30,7 @@ const getSingleDoctor = async (req, res) => {
     const id = req.params.id;
 
     try {
-        const doctor = await Doctor.findById(id).select('-password');
+        const doctor = await Doctor.findById(id).populate('review').select('-password');
         if (doctor)
             res.status(200).json({ success: true, message: "Doctor found", data: doctor });
         else
