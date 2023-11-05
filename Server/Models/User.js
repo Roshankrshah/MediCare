@@ -32,6 +32,10 @@ const UserSchema = new mongoose.Schema({
     bloodType:{
         type: String
     },
+    appointments:[{
+        type: mongoose.Types.ObjectId,
+        ref: 'Booking'
+    }]
 });
 
 module.exports = mongoose.model('User',UserSchema);

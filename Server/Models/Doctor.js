@@ -68,7 +68,10 @@ const DoctorSchema = new mongoose.Schema({
         enum: ["pending","approved","cancelled"],
         default: "pending"
     },
-    //appointments:
+    appointments:[{
+        type: mongoose.Types.ObjectId,
+        ref: 'Booking'
+    }]
 });
 
 module.exports = mongoose.model('Doctor',DoctorSchema);
