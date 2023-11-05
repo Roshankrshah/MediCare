@@ -2,7 +2,13 @@ const express = require('express');
 const router = express.Router();
 const {authenticate,restrict} = require('../utils/auth/verifyToken');
 
-const {getSingleDoctor,updateDoctor,getAllDoctor,deleteDoctor} = require('../Controllers/doctorController');
+const {
+    getSingleDoctor,
+    updateDoctor,
+    getAllDoctor,
+    deleteDoctor,
+    getDoctorProfile
+} = require('../Controllers/doctorController');
 
 const reviewRouter = require('./review');
 
@@ -14,5 +20,6 @@ router.route('/:id')
     .delete(authenticate,restrict(['doctor']),deleteDoctor)
 
 router.get('/',getAllDoctor);
+router.get('/profile/me',authenticate,restrict(['doctor']),getDoctorProfile);
 
 module.exports = router;
