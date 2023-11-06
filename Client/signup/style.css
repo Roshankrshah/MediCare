@@ -1,0 +1,67 @@
+.navbar {
+  background-image: url('../images/header-bg.png');
+
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar-nav {
+  margin-left: 100px;
+  gap: 20px
+}
+
+
+.navbar-nav .nav-link.active {
+  color: blue;
+}
+
+.container-fluid {
+  margin: auto 200px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 10px auto;
+  justify-content: space-evenly;
+  gap: 50px;
+}
+
+input[type=email],input[type=text],
+input[type=password] {
+  width: 70%;
+  padding: 12px 20px;
+  margin: 8px;
+  display: inline-block;
+  border: none;
+  border-bottom: 2px solid;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 70%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.login-btn {
+  border-radius: 25px;
+  background-color: blue;
+  padding: auto 20px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: rgb(93, 93, 234);
+}
