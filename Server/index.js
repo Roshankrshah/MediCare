@@ -10,7 +10,8 @@ const reviewRoute = require('./Routes/review');
 const app = express();
 
 const corsOptions = {
-    origin: true
+    origin: true,
+    methods: ['GET','POST','PATCH','DELETE','PUT']
 }
 
 app.use(express.json());
