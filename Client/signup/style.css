@@ -12,11 +12,6 @@
   gap: 20px
 }
 
-
-.navbar-nav .nav-link.active {
-  color: blue;
-}
-
 .container-fluid {
   margin: auto 200px;
 }
