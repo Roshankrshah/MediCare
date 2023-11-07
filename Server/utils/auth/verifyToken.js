@@ -38,7 +38,7 @@ const restrict = roles=> async(req,res,next)=>{
     if(doctor){
         user = doctor
     }
-    console.log(roles);
+    
     if(!roles.includes(user.role)){
         return res.status(401).json({success:false, message: "You're not authorized"});
     }
