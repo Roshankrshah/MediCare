@@ -22,6 +22,7 @@ loginBtn.addEventListener('click', async (e) => {
         alert(resData.message);
         if(resData.success){
             localStorage.setItem('token',resData.token);
+            localStorage.setItem('role',resData.role);
             location.href = '/index.html';
         }
     } catch (error) {

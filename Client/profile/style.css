@@ -1,0 +1,53 @@
+.navbar {
+    background-image: url('../images/header-bg.png');
+
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar-nav {
+    margin-left: 100px;
+    gap: 20px
+}
+
+
+.navbar-nav .nav-link.active {
+    color: blue;
+}
+
+.container-fluid {
+    margin: auto 150px;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    margin: auto 150px;
+}
+
+.details-container{
+    padding: 50px 100px;
+}
+
+.profile-container{
+    border: 1px solid;
+    text-align: center;
+    padding: 50px 100px;
+}
+
+.profile-container p{
+    margin-bottom: 5px;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.btn-container button{
+    margin: 10px;
+    padding: 10px;
+}
