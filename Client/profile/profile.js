@@ -45,8 +45,22 @@ const start = async () => {
                 location.href = '/index.html';
             });
 
-            deleteBtn.addEventListener('click', () => {
-
+            deleteBtn.addEventListener('click', async() => {
+                try{
+                    const deleteRes = await fetch(`http://localhost:3245/api/v1/user/${resData.data._id}`,{
+                        method: 'DELETE',
+                        headers:{
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+        
+                    const deleteResdata = await deleteRes.json();
+                    alert(deleteResdata.message);
+                    localStorage.clear();
+                    location.href = '/index.html';
+                }catch(error){
+                    alert('Something went wrong, Try again');
+                }
             });
 
             profile.addEventListener('click', showProfile(resData));
