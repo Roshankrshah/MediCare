@@ -21,7 +21,7 @@ const deleteUser = async (req, res) => {
     const id = req.params.id;
 
     try {
-        await User.findByIdAndDelete(id, { $set: req.body }, { new: true });
+        await User.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "Successfully Deleted" });
     } catch (error) {
         res.status(500).json({ success: false, message: "Failed to Delete" });
