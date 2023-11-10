@@ -43,7 +43,10 @@ if (localStorage.getItem('token')) {
 }
 
 function showDetails(){
-    location.href = '/profile/index.html';
+    if(localStorage.getItem('role')== 'patient')
+        location.href = '/profile/index.html';
+    else
+        location.href = '/docProfile/index.html';
 }
 
 

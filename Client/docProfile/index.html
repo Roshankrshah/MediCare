@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediCare | My Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">
+                <img src="../images/logo.png" alt="Logo" width="120" height="30" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Find a Doctor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="tab-container">
+            <ul class="option-list">
+                <li>Overview</li>
+                <li>Appointments</li>
+                <li>Profile</li>
+            </ul>
+            <div class="btn-container">
+                <button class="logout-btn">Logout</button>
+                <button class="delete-btn">Delete Account</button>
+            </div>
+        </div>
+        <div class="details-container">
+            <div class="alert-msg">
+            </div>
+            <div class="content" id="Overview">
+                <h4>About of <span id="name"></span></h4>
+                <p id="about"></p>
+                <div class="edu-container">
+
+                </div>
+                <div class="exp-container">
+                    <h4>Experience</h4>
+                </div>
+            </div>
+
+            <div class="content" id="Appointments">
+            </div>
+            <div class="content" id="Profile">
+                <h1>Profile Details</h1>
+                <form class="row g-3">
+                    <div class="col-md-12">
+                        <label for="Username" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="InputUsername">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="InputEmail" disabled>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="Phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" placeholder="Enter your Phone number" id="InputPhone">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea class="form-control" placeholder="Enter your Bio" id="InputBio" rows="3"></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select id="InputGender" class="form-select">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Specialization" class="form-label">Specialization</label>
+                        <select id="InputSpecialization" class="form-select">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="Price" class="form-label">Fee</label>
+                        <input type="number" placeholder="Enter Fee" id="InputPrice">
+                    </div>
+                    <div id="educationFields">
+                        <label class="form-label">Education</label>
+                        <div class="education">
+                            <div class="col-md-6">
+                                <label for="start-date" class="form-label">Start Date</label>
+                                <input type="date" placeholder="Starting Date">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="end-date" class="form-label">End Date</label>
+                                <input type="date" placeholder="Ending Date">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="degree" class="form-label">Degree</label>
+                                <input type="text" placeholder="Degree">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="university" class="form-label">University</label>
+                                <input type="text" placeholder="University">
+                            </div>
+                        </div>
+                        <button id="add-edu">Add Education</button>
+                    </div>
+                    <div id="experienceFields">
+                        <label class="form-label">Experience</label>
+                        <div class="experience">
+                            <div class="col-md-6">
+                                <label for="start-date" class="form-label">Start Date</label>
+                                <input type="date" placeholder="Starting Date">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="end-date" class="form-label">End Date</label>
+                                <input type="date" placeholder="Ending Date">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="position" class="form-label">Position</label>
+                                <input type="text" placeholder="Position">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="employer" class="form-label">Employer</label>
+                                <input type="text" placeholder="Employer">
+                            </div>
+                        </div>
+                        <button id="add-exp">Add Experience</button>
+                    </div>
+                    <div id="timeSlotFields">
+                        <label class="form-label">Time Slots</label>
+                        <div class="timeSlot">
+                            <div class="col-md-4">
+                                <label for="day" class="form-label">Day</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursday</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                    <option value="sunday">Sunday</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="start-time" class="form-label">Start Time</label>
+                                <input type="time" placeholder="Starting Time">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="end-time" class="form-label">End Time</label>
+                                <input type="time" placeholder="Ending Time">
+                            </div>
+                        </div>
+                        <button id="add-time">Add Time Slot</button>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="about" class="form-label">About</label>
+                        <textarea class="form-control" placeholder="Enter your About" id="InputAbout"
+                            rows="5"></textarea>
+                    </div>
+                </form>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary update-btn">Update Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="docProfile.js"></script>
+</body>
+
+</html>
