@@ -66,7 +66,6 @@ const start = async () => {
         }
     }
     else {
-        console.log('hi');
         try {
             const res = await fetch(`http://localhost:3245/api/v1/doctor/profile/me`, {
                 headers: {
@@ -88,6 +87,31 @@ const start = async () => {
                     <button class="delete-btn">Delete Account</button>
                 </div>`;
 
+                const logoutBtn = document.querySelector('.logout-btn');
+                const deleteBtn = document.querySelector('.delete-btn');
+
+                logoutBtn.addEventListener('click', () => {
+                    localStorage.clear();
+                    location.href = '/index.html';
+                });
+
+                deleteBtn.addEventListener('click', async () => {
+                    try {
+                        const deleteRes = await fetch(`http://localhost:3245/api/v1/doctor/${resData.data._id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            }
+                        });
+
+                        const deleteResdata = await deleteRes.json();
+                        alert(deleteResdata.message);
+                        localStorage.clear();
+                        location.href = '/index.html';
+                    } catch (error) {
+                        alert('Something went wrong, Try again');
+                    }
+                });
                 const optionList = document.querySelector('.option-list');
 
                 optionList.addEventListener('click', (e) => {
@@ -178,13 +202,13 @@ const start = async () => {
                                 <input type="email" class="form-control" id="InputEmail" value=${resData.data.email} disabled>
                             </div>
   
-                            <div class="col-12">
+                            <div class="col-md-12">
                                 <label for="Phone" class="form-label">Phone</label>
                                 <input type="text" class="form-control" placeholder="Enter your Phone number" id="InputPhone" value=${resData.data.phone ? resData.data.phone : ''}>
                             </div>
-                            <div class="col-12">
-                                <label for="inputAddress2" class="form-label">Bio</label>
-                                <textarea class="form-control" placeholder="Enter your Bio" name="Bio" id="InputBio" rows="3">${resData.data.bio ? resData.data.bio : ''}</textarea>
+                            <div class="col-md-12">
+                                <label for="bio" class="form-label">Bio</label>
+                                <textarea class="form-control" placeholder="Enter your Bio" id="InputBio" rows="3">${resData.data.bio ? resData.data.bio : ''}</textarea>
                             </div>
                             <div class="col-md-4">
                                 <label for="gender" class="form-label">Gender</label>
@@ -206,16 +230,174 @@ const start = async () => {
                                 <input type="number" placeholder="Enter Fee" id="InputPrice" value=${resData.data.ticketPrice ? resData.data.ticketPrice : ''}>
                             </div>
                             <div id="educationFields">
+                            <label class="form-label">Education</label>
                             <div class="education">
+                                <div class="col-md-6">
+                                <label for="start-date" class="form-label">Start Date</label>
                                 <input type="date" placeholder="Starting Date">
-                                <input type="date" placeholder="Ending Date">
+                                </div>
+                                <div class="col-md-6">
+                                <label for="end-date" class="form-label">End Date</label>
+                                <input type="date" placeholder="Ending Date" >
+                                </div>
+                                <div class="col-md-6">
+                                <label for="degree" class="form-label">Degree</label>
                                 <input type="text" placeholder="Degree">
+                                </div>
+                                <div class="col-md-6">
+                                <label for="university" class="form-label">University</label>
+                                <input type="text" placeholder="University">
+                                </div>
+                            </div>
+                            <button id="add-edu">Add Education</button>
+                            </div>
+                            <div id="experienceFields">
+                            <label class="form-label">Experience</label>
+                            <div class="experience">
+                                <div class="col-md-6">
+                                <label for="start-date" class="form-label">Start Date</label>
+                                <input type="date" placeholder="Starting Date">
+                                </div>
+                                <div class="col-md-6">
+                                <label for="end-date" class="form-label">End Date</label>
+                                <input type="date" placeholder="Ending Date" >
+                                </div>
+                                <div class="col-md-6">
+                                <label for="position" class="form-label">Position</label>
+                                <input type="text" placeholder="Position">
+                                </div>
+                                <div class="col-md-6">
+                                <label for="employer" class="form-label">Employer</label>
+                                <input type="text" placeholder="Employer">
+                                </div>
+                            </div>
+                            <button id="add-exp">Add Experience</button>
+                            </div>
+                            <div id="timeSlotFields">
+                            <label class="form-label">Time Slots</label>
+                            <div class="timeSlot">
+                                <div class="col-md-6">
+                                <label for="day" class="form-label">Day</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursday</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                    <option value="sunday">Sunday</option>
+                                </div>
+                                <div class="col-md-6">
+                                <label for="start-time" class="form-label">Start Time</label>
+                                <input type="time" placeholder="Starting Time">
+                                </div>
+                                <div class="col-md-6">
+                                <label for="end-time" class="form-label">End Time</label>
+                                <input type="time" placeholder="Ending Time" >
+                                </div>
+                            </div>
+                            <button id="add-time">Add Time Slot</button>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="about" class="form-label">About</label>
+                                <textarea class="form-control" placeholder="Enter your About" id="InputAbout" rows="5">${resData.data.about ? resData.data.about : ''}</textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary update-btn">Update Profile</button>
+                            </div>`;
+
+                        detailsContainer.appendChild(divEle);
+
+                        
+
+                        const addEdu = document.getElementById('add-edu');
+                        addEdu.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            var educationFields = document.getElementById('educationFields');
+                            var newField = document.createElement('div');
+                            newField.className = 'education';
+                            newField.innerHTML = `
+                            <div class="col-md-6">
+                                <label for="start-date" class="form-label">Start Date</label>
+                                <input type="date" placeholder="Starting Date">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="end-date" class="form-label">End Date</label>
+                                <input type="date" placeholder="Ending Date" >
+                            </div>
+                            <div class="col-md-6">
+                                <label for="degree" class="form-label">Degree</label>
+                                <input type="text" placeholder="Degree">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="university" class="form-label">University</label>
                                 <input type="text" placeholder="University">
                             </div>
-                            <button onclick="addEducationField()">Add More Education Field</button>
-                            </div>`;
-                    
-                        detailsContainer.appendChild(divEle);
+                            `;
+                            
+                            educationFields.insertBefore(newField,addEdu);
+                        });
+
+                        const addExp = document.getElementById('add-exp');
+                        addExp.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            var experienceFields = document.getElementById('experienceFields');
+                            var newField = document.createElement('div');
+                            newField.className = 'experience';
+                            newField.innerHTML = `
+                            <div class="col-md-6">
+                                <label for="start-date" class="form-label">Start Date</label>
+                                <input type="date" placeholder="Starting Date">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="end-date" class="form-label">End Date</label>
+                                <input type="date" placeholder="Ending Date" >
+                            </div>
+                            <div class="col-md-6">
+                                <label for="degree" class="form-label">Degree</label>
+                                <input type="text" placeholder="Degree">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="university" class="form-label">University</label>
+                                <input type="text" placeholder="University">
+                            </div>
+                            `;
+                            
+                            experienceFields.insertBefore(newField,addExp);
+                        });
+
+                        const addTime = document.getElementById('add-time');
+                        addTime.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            var timeSlotFields = document.getElementById('timeSlotFields');
+                            var newField = document.createElement('div');
+                            newField.className = 'timeSlot';
+                            newField.innerHTML = `
+                            <div class="col-md-6">
+                                <label for="day" class="form-label">Day</label>
+                                <select class="form-select">
+                                    <option selected>Select</option>
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursday</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                    <option value="sunday">Sunday</option>
+                                </div>
+                                <div class="col-md-6">
+                                <label for="start-time" class="form-label">Start Time</label>
+                                <input type="time" placeholder="Starting Time">
+                                </div>
+                                <div class="col-md-6">
+                                <label for="end-time" class="form-label">End Time</label>
+                                <input type="time" placeholder="Ending Time" >
+                                </div>
+                            `;
+                            
+                            timeSlotFields.insertBefore(newField,addTime);
+                        });
                     }
                 })
             }
