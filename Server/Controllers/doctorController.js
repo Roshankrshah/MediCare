@@ -20,7 +20,7 @@ const deleteDoctor = async (req, res) => {
     const id = req.params.id;
 
     try {
-        await Doctor.findByIdAndDelete(id, { $set: req.body }, { new: true });
+        await Doctor.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "Successfully Deleted" });
     } catch (error) {
         res.status(500).json({ success: false, message: "Failed to Delete" });

@@ -48,9 +48,17 @@ const DoctorSchema = new mongoose.Schema({
     about:{
         type: String
     },
-    timeSlots:{
-        type: Array
-    },
+    timeSlots:[{
+        day :{
+            type: String,
+        },
+        start:{
+            type: String
+        },
+        end:{
+            type: String
+        }
+    }],
     reviews:[{
         type: mongoose.Types.ObjectId,
         ref: 'Review'
